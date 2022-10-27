@@ -31,7 +31,10 @@ dummy_safety_checker = lambda images, **kwargs: (images, [False] * len(images))
 class StableDiffusionHandler:
     def __init__(self, token=True):
         self.text2img = StableDiffusionPipeline.from_pretrained(
-        "runwayml/stable-diffusion-v1-5",
+        #"runwayml/stable-diffusion-v1-5",
+        "CompVis/stable-diffusion-v1-4",
+        
+        
             revision="fp16",
             torch_dtype=torch.float16,
             use_auth_token=token).to("cuda")
