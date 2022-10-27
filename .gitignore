@@ -2,4 +2,5 @@ quicksaves/*
 __pycache__/*
 custom_pipeline/__pycache__/*
 modifiers.txt
-
+.venv/*
+.venv
