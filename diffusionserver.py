@@ -28,11 +28,15 @@ except:
 
 dummy_safety_checker = lambda images, **kwargs: (images, [False] * len(images))
 
+# fix for pil versions - recognizes both formats for PIL < 9.0 and > 9.0. 
+if not hasattr(PIL.Image, 'Resampling'):
+    PIL.Image.Resampling = PIL.Image
+
 class StableDiffusionHandler:
     def __init__(self, token=True):
         self.text2img = StableDiffusionPipeline.from_pretrained(
-        #"runwayml/stable-diffusion-v1-5",
-        "CompVis/stable-diffusion-v1-4",
+        "runwayml/stable-diffusion-v1-5",
+        #"CompVis/stable-diffusion-v1-4",
         
         
             revision="fp16",
@@ -133,6 +137,7 @@ class StableDiffusionHandler:
                 im = Image.fromarray(gfpgan_sample)
 
             return im.resize((width, height), resample=Image.Resampling.LANCZOS)
+            #return im.resize((width, height), resample=Image.LANCZOS)
 
     def reimagine(self, prompt, image, steps=50, guidance_scale=7.5, seed=-1, strength=0.75, callback=None, negative_prompt=None, use_gfp=False):
 
