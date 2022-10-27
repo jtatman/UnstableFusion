@@ -29,8 +29,8 @@ except:
 dummy_safety_checker = lambda images, **kwargs: (images, [False] * len(images))
 
 # fix for pil versions - recognizes both formats for PIL < 9.0 and > 9.0. 
-if not hasattr(PIL.Image, 'Resampling'):
-    PIL.Image.Resampling = PIL.Image
+if not hasattr(Image, 'Resampling'):
+    Image.Resampling = Image
 
 class StableDiffusionHandler:
     def __init__(self, token=True):
